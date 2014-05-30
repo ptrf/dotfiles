@@ -66,11 +66,11 @@ set cursorline
 
 """ Backup, swaps, undos, etc.
 set backup
-set backupdir=~/.vim/backup/
+set backupdir=~/.vim/backups/
 set swapfile
-set directory=~/.vim/temp/
+set directory=~/.vim/swaps/
 set undolevels=1000
-set undodir=~/.vim/undofiles/
+set undodir=~/.vim/undof
 
 """ Encoding, file formats
 set enc=utf-8
@@ -167,8 +167,8 @@ endif
 """ Make sure we have needed directories in place
 if has("unix")
     if !isdirectory(expand("~/.vim/"))
-        !mkdir -p ~/.vim/backup/
-        !mkdir -p ~/.vim/temp/
+        !mkdir -p ~/.vim/backups/
+        !mkdir -p ~/.vim/swaps/
         !mkdir -p ~/.vim/undofiles/
     endif
 endif
@@ -201,6 +201,19 @@ endif
 """ PLUGINS
 """
 
+""" Pathogen infect
+execute pathogen#infect()
+
+""" markdown mode
+let g:vim_markdown_initial_foldlevel=1
+
 """ Secure modelines
 let g:secure_modelines_verbose = 1
 let g:secure_modelines_modelines = 15
+
+""" Github comment
+let g:github_user = 'ptrf'
+let g:github_comment_open_browser = 1
+
+""" Git gutter
+let g:gitgutter_eager = 1
