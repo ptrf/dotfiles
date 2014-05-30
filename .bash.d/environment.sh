@@ -12,6 +12,8 @@ if [[ $EUID == 0 ]] ; then
 else
     export PS1="$BLACK[ $GREEN\u$BLACK @ $CYAN\h$PURPLE\$(parse_git_branch) $BLACK]$YELLOW \w \n$BLACK\$> \[\033[0m\]"
 fi
+export PS2="\[$ORANGE\]→ \[$RESET\]"
+
 
 # Pager
 export PAGER=less
