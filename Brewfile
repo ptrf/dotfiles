@@ -42,11 +42,11 @@ install p7zip
 install pigz
 install pv
 install rename
-install rhino
 install tree
 install webkit2png
 install password-store
 install mtr
+install rsync
 
 # Remove outdated versions from the cellar
 cleanup
