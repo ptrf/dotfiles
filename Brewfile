@@ -45,6 +45,8 @@ install rename
 install rhino
 install tree
 install webkit2png
+install password-store
+install mtr
 
 # Remove outdated versions from the cellar
 cleanup
