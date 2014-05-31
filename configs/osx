@@ -39,8 +39,12 @@ defaults write com.apple.systemuiserver menuExtras -array \
 	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
 	"/System/Library/CoreServices/Menu Extras/Clock.menu"
 
+# Set appearence
+defaults write -g 'AppleAquaColorVariant' -int 6
+
+
 # Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+defaults write NSGlobalDomain AppleHighlightColor -string "0.326760 0.877828 0.219507"
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
@@ -123,8 +127,15 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Disable local Time Machine snapshots
 sudo tmutil disablelocal
 
-# Disable hibernation (speeds up entering sleep mode)
-#sudo pmset -a hibernatemode 0
+# hibernation 
+sudo pmset -a hibernatemode 3
+
+### Automatically reduce brightness before display goes to sleep
+sudo pmset -b halfdim 0
+
+### Display sleep: 10 min
+sudo pmset -b displaysleep 10
+
 
 # Remove the sleep image file to save disk space
 #sudo rm /Private/var/vm/sleepimage
@@ -337,6 +348,9 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
+### Position on screen: Left
+defaults write com.apple.dock 'orientation' -string 'left'
+
 # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 36
 
@@ -403,6 +417,8 @@ find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -dele
 defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 # Add a spacer to the right side of the Dock (where the Trash is)
 defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
+
+
 
 # Hot corners
 # Possible values:
