@@ -27,7 +27,7 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 
 # IP addresses
 alias ip="curl ip.tyk.dk"
-alias localip="ipconfig getifaddr en0"
+# mac only: alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # Enhanced WHOIS lookups
@@ -155,6 +155,6 @@ fi
 ## FreeBSD specifics
 #
 
-if [[ "$MY_SYSTEM_KERNEL" = "FreeBSD" ]] ; then
-
-fi
+#if [[ "$MY_SYSTEM_KERNEL" = "FreeBSD" ]] ; then
+#
+#fi

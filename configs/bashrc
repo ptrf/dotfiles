@@ -52,3 +52,16 @@ source $BASH_RC_DIRECTORY/environment.sh
 source $BASH_RC_DIRECTORY/aliases.sh
 
 # === OTHER ===
+
+source $BASH_RC_DIRECTORY/completions.sh
+
+# for things that should not be commited to git
+_extras_file="$BASH_RC_DIRECTORY/extras.sh"
+
+if [[ -f $_extras_file ]] ; then
+    source $_extras_file
+fi
+
+# Arete perl hack, removed when fixing perl on arete
+#PERL_MB_OPT="--install_base \"/Users/ptrf/perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/Users/ptrf/perl5"; export PERL_MM_OPT;
