@@ -16,6 +16,6 @@ Thumbs.db
 # Repositories
 .svn
 
-Emacs and Vim swap files
+# Emacs and Vim swap files
 *~
 *.swp
