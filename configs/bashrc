@@ -15,7 +15,7 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
-export BASH_RC_DIRECTORY="~/.bash.d"
+export BASH_RC_DIRECTORY="$HOME/.bash.d/"
 
 # global bashrc
 if [ -f /etc/bashrc ]; then
