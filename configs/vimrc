@@ -7,6 +7,10 @@
 """ Remap of mapleader - <leader>
 let mapleader = ","
 
+""" Setup variable g:my_vim_dir for VIMDIR s
+let g:my_vim_dir=expand("$HOME/.vim")
+
+
 """ Behavioral
 set nocompatible
 set noinsertmode
@@ -70,7 +74,7 @@ set backupdir=~/.vim/backups/
 set swapfile
 set directory=~/.vim/swaps/
 set undolevels=1000
-set undodir=~/.vim/undof
+set undodir=~/.vim/undofiles
 
 """ Encoding, file formats
 set enc=utf-8
@@ -123,7 +127,9 @@ map <C-S-k> <C-]>
 map <C-S-j> <C-t>
 
 " Sudo to write
-cmap w!! w !sudo tee % >/dev/null
+if has("unix")
+    cmap w!! w !sudo tee % >/dev/null
+end
 
 """
 """ LEADERS
@@ -165,7 +171,7 @@ else
 endif
 
 """ Make sure we have needed directories in place
-if has("unix")
+if has("unix") || has("win32") || has("win64")
     if !isdirectory(expand("~/.vim/"))
         !mkdir -p ~/.vim/backups/
         !mkdir -p ~/.vim/swaps/
@@ -196,6 +202,40 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.md setfiletype markdown syntax=markdown
 endif
 
+"""
+""" OS SPECIFICS
+"""
+
+""" Windows
+" Copied from
+" http://stackoverflow.com/questions/10612362/setting-up-gvim-on-windows
+" $HOME/.vim and $HOME/.vim/after are in the &rtp on unix But on windows, they
+" need to be added.
+if has("win32") || has("win64")
+  "add g:my_vim_dir to the front of the runtimepath
+  execute "set rtp^=".g:my_vim_dir
+  "add g:my_vim_dir\after to the end of the runtimepath
+  execute "set rtp+=".g:my_vim_dir."\\after"
+  "Note, pathogen#infect() looks for the 'bundle' folder in each path
+  "of the &rtp, where the last dir in the '&rtp path' is not 'after'. The
+  "<path>\bundle\*\after folders will be added if and only if
+  "the corresponding <path>\after folder is in the &rtp before
+  "pathogen#infect() is called.  So it is very important to add the above
+  "'after' folder.
+  "(This applies to vim plugins such as snipmate, tabularize, etc.. that
+  " are loaded by pathogen (and perhaps vundle too.))
+
+  " Not necessary, but I like to cleanup &rtp to use \ instead of /
+  " when on windows machines
+  let &rtp=substitute(&rtp,"[/]","\\","g")
+
+  "On windows, if called from cygwin or msys, the shell needs to be changed 
+  "to cmd.exe to work with certain plugins that expect cmd.exe on windows versions   
+  "of vim.
+  if &shell=~#'bash$'
+    set shell=$COMSPEC " sets shell to correct path for cmd.exe
+  endif
+endif
 
 """
 """ PLUGINS
