@@ -1,0 +1,33 @@
+
+my_hdr From: My Name <my@email.tld>
+
+source ~/.mutt/crypto
+ignore *
+unignore date from to cc subject resent-from reply-to x-mailer
+
+set smtp_url="smtps://user@email.tld@mail.host.tld:465"
+# Automatically log in to this mailbox at startup
+set spoolfile="imaps://user@email.tld@mail.host.tld/INBOX"
+# # Define the = shortcut, and the entry point for the folder browser (c?)
+set folder="imaps://user@email.tld@mail.host.tld/INBOX"
+set postponed="=Drafts"
+set trash="=Trash"
+
+#activate TLS if available on the server
+set ssl_starttls=yes
+#
+# always use SSL when connecting to a server
+set ssl_force_tls=yes
+
+# Don't wait to enter mailbox manually
+unset imap_passive
+# Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+set imap_check_subscribed
+# Reduce polling frequency to a sane level
+set mail_check=60
+# And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
+set timeout=10
+# keep a cache of headers for faster loading (1.5.9+?)
+set header_cache=~/.hcache
+# Display download progress every 5K
+set net_inc=5
