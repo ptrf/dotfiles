@@ -23,7 +23,7 @@ set updatecount=50
 set ttyfast
 set report=0
 set nomodeline
-set novisualbell
+set visualbell
 set shortmess=atI
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
